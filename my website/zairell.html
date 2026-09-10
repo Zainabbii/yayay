@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    color: white;
+    text-align: center;
+
+    background:
+        linear-gradient(rgba(133,132,132,0.35), rgba(143,79,79,0.35)),
+        url("legoo.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+h1 {
+    font-family: Pacifico, cursive;
+    font-size: 70px;
+    text-shadow: 0 0 20px rgba(255,255,255,.5);
+}
+
+h2 {
+    font-size: 45px;
+    margin-top: 10px;
+}
+
+p {
+    max-width: 700px;
+    font-size: 20px;
+    margin: 20px auto;
+    line-height: 1.8;
+}
+
+button {
+    padding: 16px 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: white;
+    color: #ff4f81;
+    font-weight: bold;
+    transition: .3s;
+    position: relative;
+    z-index: 10;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px white;
+}
+
+.hidden {
+    display: none;
+}
+
+#surprise {
+    margin-top: 40px;
+    font-size: 30px;
+    animation: pop 1s infinite alternate;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.gallery img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.3);
+    transition: .4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.08) rotate(3deg);
+}
+
+/* BALLOONS */
+
+.balloon {
+    position: fixed;
+    bottom: -150px;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: float linear infinite;
+    opacity: .9;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: white;
+    left: 50%;
+    top: 80px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-120vh);
+    }
+}
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+footer {
+    padding: 50px;
+    font-size: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <h1>🎉 Happy Birthday 🎉</h1>
+
+    <h2>
+         <span style="color: yellow;">Bitch</span> 
+    </h2>
+
+    <p>
+
+       
+
+    </p>
+
+    <button onclick="showSurprise()">
+        🎁 Click For Your Surprise
+    </button>
+
+    <div id="surprise" class="hidden">
+
+        🎉🎂✨
+        <br><br>
+
+        <h2>I Hope All Your Wishes Come True! </h2>
+
+        <p>
+      Stay happy and blessed. 
+      Enjoy your day! dont forget im more nonchalant 
+              
+        </p>
+
+    </div>
+
+    <section class="gallery">
+
+        <img src="photo1.JPG" alt="Memory 1">
+        <img src="photo2.JPG" alt="Memory 2">
+        <img src="photo3.JPG" alt="Memory 3">
+
+    </section>
+
+    <footer>
+        my pleasure
+    </footer>
+
+</div>
+
+<script>
+
+/* BALLOONS */
+
+for (let i = 0; i < 20; i++) {
+
+    let b = document.createElement("div");
+
+    b.className = "balloon";
+
+    b.style.left = Math.random() * 100 + "vw";
+
+    b.style.background =
+        `hsl(${Math.random() * 360}, 90%, 65%)`;
+
+    b.style.animationDuration =
+        5 + Math.random() * 8 + "s";
+
+    b.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    document.body.appendChild(b);
+}
+
+
+/* SURPRISE */
+
+function showSurprise() {
+
+    document.getElementById("surprise")
+        .classList.remove("hidden");
+
+    createConfetti();
+}
+
+
+/* CONFETTI */
+
+function createConfetti() {
+
+    for (let i = 0; i < 80; i++) {
+
+        let conf = document.createElement("div");
+
+        conf.className = "confetti";
+
+        conf.style.left =
+            Math.random() * 100 + "vw";
+
+        conf.style.background =
+            `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+        conf.style.animationDuration =
+            2 + Math.random() * 3 + "s";
+
+        conf.style.animationDelay =
+            Math.random() * 0.8 + "s";
+
+        document.body.appendChild(conf);
+
+        setTimeout(() => {
+            conf.remove();
+        }, 5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
